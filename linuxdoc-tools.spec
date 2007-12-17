@@ -12,7 +12,6 @@ Patch2: linuxdoc-tools-ifpdf.patch
 Requires: jade
 Requires: docbook-utils
 Url: http://people.debian.org/~sano/linuxdoc-tools/
-BuildRoot: %{_tmppath}/%{name}-root
 BuildRequires:	flex
 BuildRequires:	openjade
 BuildRequires:	sgml-common
