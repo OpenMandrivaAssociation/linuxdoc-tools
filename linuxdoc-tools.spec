@@ -2,7 +2,7 @@ Summary: A text formatting package based on SGML
 Name: linuxdoc-tools
 Obsoletes: linuxdoc-sgml
 Version: 0.9.21
-Release: %mkrel 7
+Release: %mkrel 8
 License: Freely distributable
 Group: Publishing
 Source: http://people.debian.org/~sano/linuxdoc-tools/archives/%{name}_%{version}.tar.bz2
@@ -11,6 +11,8 @@ Patch1: linuxdoc-tools-0.9.20-strip.patch
 Patch2: linuxdoc-tools-ifpdf.patch
 Requires: jade
 Requires: docbook-utils
+#gw needed by sgml2info
+Requires: texinfo
 Url: http://people.debian.org/~sano/linuxdoc-tools/
 BuildRoot: %{_tmppath}/%{name}-root
 BuildRequires:	flex
