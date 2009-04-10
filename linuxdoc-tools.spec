@@ -38,13 +38,13 @@ documentation.
 %patch2 -p1 -b .ifpdf
 
 %build
-%configure --with-installed-nsgmls --with-installed-iso-entities
+%configure2_5x --with-installed-nsgmls --with-installed-iso-entities
 # Packaging brain-damage
 ( cd entity-map
   autoconf
-  %configure
+  %configure2_5x
 )
-%make OPTIMIZE="$RPM_OPT_FLAGS"
+%make OPTIMIZE="%{optflags}"
 perl -pi -e 's,\$main::prefix/share/sgml/iso-entities-8879.1986/iso-entities.cat,/usr/share/sgml/sgml-iso-entities-8879.1986/catalog,' \
            lib/LinuxDocTools.pm
 
