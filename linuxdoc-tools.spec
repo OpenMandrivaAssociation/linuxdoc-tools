@@ -6,7 +6,7 @@ Release: %mkrel 10
 License: Freely distributable
 Group: Publishing
 Source: http://people.debian.org/~sano/linuxdoc-tools/archives/%{name}_%{version}.tar.bz2
-Patch0: linuxdoc-tools-0.9.13-letter.patch
+Patch0: linuxdoc-tools-0.9.21-letter.patch
 Patch1: linuxdoc-tools-0.9.20-strip.patch
 Patch2: linuxdoc-tools-ifpdf.patch
 Requires: jade
@@ -33,7 +33,7 @@ documentation.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch0 -p1 -b .letter
 %patch1 -p1 -b .strip
 %patch2 -p1 -b .ifpdf
 
