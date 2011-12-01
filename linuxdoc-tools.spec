@@ -49,7 +49,7 @@ perl -pi -e 's,\$main::prefix/share/sgml/iso-entities-8879.1986/iso-entities.cat
            lib/LinuxDocTools.pm
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall
 mv %{buildroot}%{_docdir}/%{name} %{buildroot}%{_docdir}/%{name}-%{version}
 perl -pi -e 's,/usr/share/sgml/iso-entities-8879.1986/iso-entities.cat,\$main::prefix/share/sgml/sgml-iso-entities-8879.1986/catalog,' \
@@ -63,9 +63,9 @@ mv %{buildroot}%{_datadir}/%{name}/*.sty \
 	%{buildroot}%{_datadir}/texmf/tex/latex/misc
 
 # Move perl modules to perl_vendorlib
-mkdir -p $RPM_BUILD_ROOT%{perl_vendorlib}/Text
-mv $RPM_BUILD_ROOT%{_libdir}/perl5/Text/EntityMap.pm \
-	$RPM_BUILD_ROOT%{perl_vendorlib}/Text/
+mkdir -p %{buildroot}%{perl_vendorlib}/Text
+mv %{buildroot}%{_libdir}/perl5/Text/EntityMap.pm \
+	%{buildroot}%{perl_vendorlib}/Text/
 
 cat > doc/COPYRIGHT <<EOF
 (C) International Organization for Standardization 1986
@@ -75,7 +75,7 @@ ISO 8879, provided this notice is included in all copies.
 EOF
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %post
 [ -x %{_bindir}/texhash ] && /usr/bin/env - %{_bindir}/texhash > /dev/null 2>&1
