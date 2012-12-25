@@ -1,0 +1,11 @@
+nuxdoc-tools-0.9.68/rtf-fix/rtf2rtf.l~	2008-05-28 16:16:36.000000000 +0000
++++ linuxdoc-tools-0.9.68/rtf-fix/rtf2rtf.l	2012-11-29 22:46:35.696881924 +0000
+@@ -72,7 +72,6 @@
+ int skipnewline = 0;
+ 
+ extern char *yytext;
+-extern int yyleng;
+ 
+ #define CHAPTER 1
+ #define SECTION 2
+
