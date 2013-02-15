@@ -1,27 +1,27 @@
-Summary: A text formatting package based on SGML
-Name: linuxdoc-tools
-Obsoletes: linuxdoc-sgml
-Version: 0.9.21
-Release: %mkrel 16
-License: Freely distributable
-Group: Publishing
-Source0: http://people.debian.org/~sano/linuxdoc-tools/archives/%{name}_%{version}.tar.bz2
-Patch0: linuxdoc-tools-0.9.21-letter.patch
-Patch1: linuxdoc-tools-0.9.20-strip.patch
-Patch2: linuxdoc-tools-ifpdf.patch
-Patch3:	linuxdoc-tools_0.9.68-yyleng.patch
-Requires: jade
-Requires: docbook-utils
-#gw needed by sgml2info
-Requires: texinfo
-Url: http://people.debian.org/~sano/linuxdoc-tools/
+Summary:	A text formatting package based on SGML
+Name:		linuxdoc-tools
+Version:	0.9.21
+Release:	17
+License:	Freely distributable
+Group:		Publishing
+Url:		http://people.debian.org/~sano/linuxdoc-tools/
+Source0:	http://people.debian.org/~sano/linuxdoc-tools/archives/%{name}_%{version}.tar.bz2
+Patch0:		linuxdoc-tools-0.9.21-letter.patch
+Patch1:		linuxdoc-tools-0.9.20-strip.patch
+Patch2:		linuxdoc-tools-ifpdf.patch
+Patch3:		linuxdoc-tools_0.9.68-yyleng.patch
+
 BuildRequires:	flex
 BuildRequires:	openjade
 BuildRequires:	sgml-common
 BuildRequires:	groff-for-man
-Requires: tetex-latex gawk groff
-Provides: sgml-tools
-Provides: linuxdoc-sgml
+Requires:	docbook-utils
+Requires:	gawk
+Requires:	groff
+Requires:	openjade
+#gw needed by sgml2info
+Requires:	tetex-latex
+Requires:	texinfo
 
 %description
 Linuxdoc-tools is a text formatting suite based on SGML (Standard
@@ -39,7 +39,9 @@ documentation.
 %patch3 -p1 -b .yyleng
 
 %build
-%configure2_5x --with-installed-nsgmls --with-installed-iso-entities
+%configure2_5x \
+	--with-installed-nsgmls \
+	--with-installed-iso-entities
 # Packaging brain-damage
 ( cd entity-map
   autoconf
@@ -90,3 +92,4 @@ exit 0
 %{_datadir}/texmf/tex/latex/misc/*.sty
 %{perl_vendorlib}/Text/*.pm
 %{_mandir}/*/*
+
