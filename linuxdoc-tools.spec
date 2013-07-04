@@ -11,7 +11,7 @@ Patch1:		linuxdoc-tools-0.9.20-strip.patch
 Patch2:		linuxdoc-tools-ifpdf.patch
 Patch3:		linuxdoc-tools_0.9.68-yyleng.patch
 
-BuildRequires:	flex
+BuildRequires:	flex-devel
 BuildRequires:	openjade
 BuildRequires:	sgml-common
 BuildRequires:	groff-for-man
