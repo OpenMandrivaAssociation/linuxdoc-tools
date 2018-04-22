@@ -1,15 +1,13 @@
 Summary:	A text formatting package based on SGML
 Name:		linuxdoc-tools
-Version:	0.9.21
-Release:	25
+Version:	0.9.72
+Release:	1
 License:	Freely distributable
 Group:		Publishing
-Url:		http://people.debian.org/~sano/linuxdoc-tools/
-Source0:	http://people.debian.org/~sano/linuxdoc-tools/archives/%{name}_%{version}.tar.bz2
+Url:		https://packages.debian.org/sid/linuxdoc-tools
+Source0:	http://http.debian.net/debian/pool/main/l/linuxdoc-tools/linuxdoc-tools_%{version}.orig.tar.gz
 Patch0:		linuxdoc-tools-0.9.21-letter.patch
-Patch1:		linuxdoc-tools-0.9.20-strip.patch
-Patch2:		linuxdoc-tools-ifpdf.patch
-Patch3:		linuxdoc-tools_0.9.68-yyleng.patch
+Patch1:		https://src.fedoraproject.org/rpms/linuxdoc-tools/raw/master/f/linuxdoc-tools-0.9.20-lib64.patch
 
 BuildRequires:	flex-devel
 BuildRequires:	openjade
@@ -32,28 +30,27 @@ source.  Linuxdoc-tools is intended for writing technical software
 documentation.
 
 %prep
-%setup -q
-%patch0 -p1 -b .letter
-%patch1 -p1 -b .strip
-%patch2 -p1 -b .ifpdf
-%patch3 -p1 -b .yyleng
+%autosetup -p1
+autoreconf -i
 
 %build
-%configure2_5x \
+%configure \
 	--with-installed-nsgmls \
-	--with-installed-iso-entities
+	--with-installed-iso-entities \
+	--disable-docs
 # Packaging brain-damage
-( cd entity-map
-  autoconf
-  %configure2_5x
-)
+cd entity-map
+autoconf
+%configure --enable-docs pdf
+cd ..
+
 %make OPTIMIZE="%{optflags}"
 perl -pi -e 's,\$main::prefix/share/sgml/iso-entities-8879.1986/iso-entities.cat,/usr/share/sgml/sgml-iso-entities-8879.1986/catalog,' \
            lib/LinuxDocTools.pm
 
 %install
-%makeinstall
-mv %{buildroot}%{_docdir}/%{name} %{buildroot}%{_docdir}/%{name}-%{version}
+%make_install perl5libdir=%{perl_vendorlib}
+
 perl -pi -e 's,/usr/share/sgml/iso-entities-8879.1986/iso-entities.cat,\$main::prefix/share/sgml/sgml-iso-entities-8879.1986/catalog,' \
            %{buildroot}%{_datadir}/%{name}/LinuxDocTools.pm
 
@@ -63,11 +60,6 @@ rm -f %{buildroot}%{_datadir}/%{name}/url.sty
 install -d %{buildroot}%{_datadir}/texmf/tex/latex/misc
 mv %{buildroot}%{_datadir}/%{name}/*.sty \
 	%{buildroot}%{_datadir}/texmf/tex/latex/misc
-
-# Move perl modules to perl_vendorlib
-mkdir -p $RPM_BUILD_ROOT%{perl_vendorlib}/Text
-mv $RPM_BUILD_ROOT%{_libdir}/perl5/Text/EntityMap.pm \
-	$RPM_BUILD_ROOT%{perl_vendorlib}/Text/
 
 cat > doc/COPYRIGHT <<EOF
 (C) International Organization for Standardization 1986
@@ -85,11 +77,12 @@ exit 0
 exit 0
 
 %files
-%doc %{_docdir}/%{name}-%{version}
 %{_bindir}/*
 %{_datadir}/%{name}
 %{_datadir}/entity-map
 %{_datadir}/texmf/tex/latex/misc/*.sty
 %{perl_vendorlib}/Text/*.pm
+%{perl_vendorlib}/LinuxDocTools.pm
+%{perl_vendorlib}/LinuxDocTools
 %{_mandir}/*/*
 
