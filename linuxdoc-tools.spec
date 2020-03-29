@@ -1,7 +1,7 @@
 Summary:	A text formatting package based on SGML
 Name:		linuxdoc-tools
-Version:	0.9.73
-Release:	3
+Version:	0.9.75
+Release:	1
 License:	Freely distributable
 Group:		Publishing
 Url:		https://packages.debian.org/sid/linuxdoc-tools
