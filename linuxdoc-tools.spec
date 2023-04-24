@@ -1,12 +1,12 @@
 Summary:	A text formatting package based on SGML
 Name:		linuxdoc-tools
-Version:	0.9.76
-Release:	3
+Version:	0.9.82
+Release:	1
 License:	Freely distributable
 Group:		Publishing
 Url:		https://packages.debian.org/sid/linuxdoc-tools
 Source0:	http://http.debian.net/debian/pool/main/l/linuxdoc-tools/linuxdoc-tools_%{version}.orig.tar.gz
-Patch0:		linuxdoc-tools-0.9.21-letter.patch
+Patch0:		linuxdoc-tools-0.9.82-fix-configure-checks.patch
 Patch1:		https://src.fedoraproject.org/rpms/linuxdoc-tools/raw/master/f/linuxdoc-tools-0.9.20-lib64.patch
 
 BuildRequires:	flex-devel

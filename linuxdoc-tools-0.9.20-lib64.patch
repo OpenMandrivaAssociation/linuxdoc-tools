@@ -1,10 +1,11 @@
---- linuxdoc-tools-0.9.60/bin/linuxdoc.in.orig
-+++ linuxdoc-tools-0.9.60/bin/linuxdoc.in
-@@ -23,6 +23,7 @@
- $AuxBinDir          = "@auxbindir@";
+diff -up linuxdoc-tools-0.9.82/bin/linuxdoc.in.1~ linuxdoc-tools-0.9.82/bin/linuxdoc.in
+--- linuxdoc-tools-0.9.82/bin/linuxdoc.in.1~	2023-04-24 02:37:24.263049381 +0200
++++ linuxdoc-tools-0.9.82/bin/linuxdoc.in	2023-04-24 02:37:45.836346790 +0200
+@@ -12,6 +12,7 @@ use 5.006;
+ use strict;
  
  use lib "@pkgdatadir@";
 +use lib "@prefix@/lib64/perl5";
  use lib "@perl5libdir@";
  
- # ---------------------------------------------------------------------
+ use LinuxDocTools::Utils qw{ldt_which};

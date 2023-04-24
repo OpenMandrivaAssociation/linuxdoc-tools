@@ -1,0 +1,210 @@
+diff -up linuxdoc-tools-0.9.82/sgmls-1.1/configure.omv~ linuxdoc-tools-0.9.82/sgmls-1.1/configure
+--- linuxdoc-tools-0.9.82/sgmls-1.1/configure.omv~	2023-04-24 02:40:44.095693733 +0200
++++ linuxdoc-tools-0.9.82/sgmls-1.1/configure	2023-04-24 02:44:45.330631815 +0200
+@@ -110,13 +110,14 @@ cat >doit.c <<\EOF
+ 
+ #include <ctype.h>
+ #include <signal.h>
++#include <stdlib.h>
+ 
+ static int whoops()
+ {
+   _exit(1);
+ }
+ 
+-main()
++int main()
+ {
+   int c;
+ #ifdef isascii
+@@ -213,9 +214,8 @@ else
+ fi
+ 
+ cat >doit.c <<\EOF
+-main(argc, argv)
+-int argc;
+-char **argv;
++#include <stdlib.h>
++int main(int argc, char **argv)
+ {
+   if (argc == 0)
+     remove("foo");
+@@ -231,9 +231,8 @@ else
+ fi
+ 
+ cat >doit.c <<\EOF
+-main(argc, argv)
+-int argc;
+-char **argv;
++#include <stdlib.h>
++int main(int argc, char **argv)
+ {
+   if (argc == 0)
+     getopt(argc, argv, "v");
+@@ -249,9 +248,8 @@ else
+ fi
+ 
+ cat >doit.c <<\EOF
+-main(argc, argv)
+-int argc;
+-char **argv;
++#include <stdlib.h>
++int main(int argc, char **argv)
+ {
+   if (argc == 0)
+     access("foo", 4);
+@@ -267,9 +265,8 @@ else
+ fi
+ 
+ cat >doit.c <<\EOF
+-main(argc, argv)
+-int argc;
+-char **argv;
++#include <stdlib.h>
++int main(int argc, char **argv)
+ {
+   if (argc == 0)
+     vfork();
+@@ -285,9 +282,8 @@ else
+ fi
+ 
+ cat >doit.c <<\EOF
+-main(argc, argv)
+-int argc;
+-char **argv;
++#include <stdlib.h>
++int main(int argc, char **argv)
+ {
+ 
+   if (argc == 0) {
+@@ -307,9 +303,8 @@ fi
+ 
+ cat >doit.c <<\EOF
+ #include <string.h>
+-main(argc, argv)
+-int argc;
+-char **argv;
++#include <stdlib.h>
++int main(int argc, char **argv)
+ {
+   if (argc == 0)
+     strerror(0);
+@@ -325,10 +320,9 @@ else
+ fi
+ 
+ cat >doit.c <<\EOF
++#include <stdlib.h>
+ #include <strings.h>
+-main(argc, argv)
+-int argc;
+-char **argv;
++int main(int argc, char **argv)
+ {
+   if (argc == 0)
+ 	bcopy((char *)0, (char *)0, 0);
+@@ -341,9 +335,8 @@ then
+ 	# Only use BSD_STRINGS if ANSI string functions don't work.
+ 	cat >doit.c <<\EOF
+ #include <string.h>
+-main(argc, argv)
+-int argc;
+-char **argv;
++#include <stdlib.h>
++int main(int argc, char **argv)
+ {
+   if (argc == 0)
+ 	memcpy((char *)0, (char *)0, 0);
+@@ -363,9 +356,8 @@ fi
+ 
+ cat >doit.c <<\EOF
+ #include <signal.h>
+-main(argc, argv)
+-int argc;
+-char **argv;
++#include <stdlib.h>
++int main(int argc, char **argv)
+ {
+   if (argc == 0)
+     raise(SIGINT);
+@@ -382,9 +374,8 @@ fi
+ 
+ cat >doit.c <<\EOF
+ #include <stdio.h>
+-main(argc, argv)
+-int argc;
+-char **argv;
++#include <stdlib.h>
++int main(int argc, char **argv)
+ {
+   if (argc == 0) {
+     fpos_t pos;
+@@ -403,13 +394,12 @@ else
+ fi
+ 
+ cat >doit.c <<\EOF
++#include <stdlib.h>
+ #include <unistd.h>
+ #include <sys/types.h>
+ #include <sys/wait.h>
+ 
+-main(argc, argv)
+-int argc;
+-char **argv;
++int main(int argc, char **argv)
+ {
+   if (argc == 0) {
+     pid_t pid;
+@@ -437,13 +427,14 @@ fi
+ cat >doit.c <<\EOF
+ #include <stdio.h>
+ #include <signal.h>
++#include <stdlib.h>
+ 
+ static int whoops()
+ {
+   _exit(1);
+ }
+ 
+-main()
++int main()
+ {
+   char buf[30];
+ #ifdef SIGSEGV
+@@ -469,10 +460,9 @@ fi
+ 
+ cat >doit.c <<\EOF
+ #include <nl_types.h>
++#include <stdlib.h>
+ 
+-main(argc, argv)
+-int argc;
+-char **argv;
++int main(int argc, char **argv)
+ {
+   if (argc == 0) {
+     nl_catd d = catopen("foo", 0);
+@@ -492,12 +482,11 @@ fi
+ 
+ cat >doit.c <<\EOF
+ #include <limits.h>
++#include <stdlib.h>
+ 
+ char c = UCHAR_MAX;
+ 
+-main(argc, argv)
+-int argc;
+-char **argv;
++int main(int argc, char **argv)
+ {
+ #if CHAR_MIN < 0
+   exit(!(c < 0));
+@@ -512,7 +501,8 @@ then
+ 	char_signed=
+ else
+ 	cat >doit.c <<\EOF
+-main()
++#include <stdlib.h>
++int main()
+ {
+   int i;
+ 
