@@ -9,6 +9,11 @@ Source0:	http://http.debian.net/debian/pool/main/l/linuxdoc-tools/linuxdoc-tools
 Patch0:		linuxdoc-tools-0.9.82-fix-configure-checks.patch
 Patch1:		https://src.fedoraproject.org/rpms/linuxdoc-tools/raw/master/f/linuxdoc-tools-0.9.20-lib64.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	flex-devel
 BuildRequires:	openjade
 BuildRequires:	sgml-common
